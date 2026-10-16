@@ -1,0 +1,852 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusConnect | Student Placement Portal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --purple: #7157f5;
+    --navy: #111a38;
+    --light: #f5f6fc;
+    --text: #202744;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+/* NAVIGATION */
+header {
+    background: white;
+    box-shadow: 0 3px 20px #101a3810;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    min-height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: var(--purple);
+}
+
+.logo span {
+    color: var(--navy);
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--purple);
+}
+
+.nav-btn, .btn {
+    display: inline-block;
+    background: var(--purple);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover, .nav-btn:hover {
+    background: #523bd0;
+    transform: translateY(-3px);
+}
+
+/* HERO */
+.hero {
+    background:
+      radial-gradient(circle at 85% 20%, #6952dc 0, transparent 35%),
+      linear-gradient(120deg, #111a38, #27205b);
+    color: white;
+    padding: 85px 0;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.tagline {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #ffffff40;
+    border-radius: 30px;
+    color: #d8d0ff;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.12;
+    margin: 25px 0;
+}
+
+.hero h1 span {
+    color: #a99aff;
+}
+
+.hero p {
+    color: #d1d7ed;
+    font-size: 17px;
+    max-width: 530px;
+    margin-bottom: 28px;
+}
+
+.btn-white {
+    background: white;
+    color: var(--navy);
+    margin-right: 10px;
+}
+
+.btn-outline {
+    border: 1px solid #ffffff70;
+    color: white;
+    background: transparent;
+}
+
+.hero-card {
+    background: white;
+    color: var(--text);
+    padding: 25px;
+    border-radius: 22px;
+    box-shadow: 0 25px 70px #0004;
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.status {
+    background: #ddf9ed;
+    color: #13845e;
+    padding: 5px 9px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: bold;
+    height: fit-content;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.dash-box {
+    background: #f0edff;
+    padding: 18px;
+    border-radius: 14px;
+}
+
+.dash-box:nth-child(2) {
+    background: #e5f8ff;
+}
+
+.dash-box:nth-child(3) {
+    background: #fff1df;
+}
+
+.dash-box:nth-child(4) {
+    background: #e2f9ed;
+}
+
+.dash-box small {
+    color: #65708a;
+}
+
+.dash-box h2 {
+    font-size: 29px;
+    margin-top: 5px;
+}
+
+.progress {
+    background: #e6e2fb;
+    height: 8px;
+    border-radius: 20px;
+    margin-top: 9px;
+    overflow: hidden;
+}
+
+.progress div {
+    width: 75%;
+    height: 100%;
+    background: var(--purple);
+}
+
+/* COMMON SECTIONS */
+section.content-section {
+    padding: 75px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 38px;
+}
+
+.section-title small {
+    color: var(--purple);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-title h2 {
+    font-size: clamp(28px, 4vw, 38px);
+    margin: 10px 0;
+}
+
+.section-title p {
+    color: #6c748b;
+    max-width: 620px;
+    margin: auto;
+}
+
+/* JOB CARDS */
+.jobs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.job-card {
+    background: white;
+    border: 1px solid #e7e8f2;
+    border-radius: 18px;
+    padding: 24px;
+    transition: .3s;
+}
+
+.job-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 18px 40px #22264b12;
+    border-color: #c7bcff;
+}
+
+.company-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    background: #eeeaff;
+    color: var(--purple);
+    border-radius: 15px;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.job-card h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.company {
+    color: #747c91;
+    font-size: 14px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 17px 0;
+}
+
+.tags span {
+    padding: 6px 9px;
+    background: #f0f1f8;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.job-info {
+    border-top: 1px solid #ececf4;
+    padding-top: 15px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #687189;
+}
+
+.job-info strong {
+    display: block;
+    color: var(--text);
+    margin-top: 3px;
+}
+
+.job-card .btn {
+    font-size: 13px;
+    padding: 10px 14px;
+}
+
+/* FEATURES */
+.features-section {
+    background: white;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.feature-card {
+    padding: 25px 20px;
+    border: 1px solid #e8e9f2;
+    border-radius: 17px;
+    transition: .3s;
+}
+
+.feature-card:hover {
+    background: #f8f6ff;
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 31px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin-bottom: 9px;
+    font-size: 18px;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #6c748b;
+}
+
+/* STATISTICS */
+.statistics {
+    background: linear-gradient(120deg, #7157f5, #4b3cb6);
+    padding: 45px 0;
+    color: white;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.stat h2 {
+    font-size: 36px;
+}
+
+.stat p {
+    color: #e5e0ff;
+    font-size: 14px;
+}
+
+/* NOTICE BOARD */
+.notice-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.notice-panel {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e7e8f2;
+}
+
+.notice-panel h3 {
+    margin-bottom: 18px;
+}
+
+.notice {
+    display: flex;
+    gap: 15px;
+    padding: 16px 0;
+    border-top: 1px solid #ededf4;
+}
+
+.notice-date {
+    background: #eeeaff;
+    color: var(--purple);
+    border-radius: 10px;
+    padding: 10px;
+    height: fit-content;
+    font-weight: bold;
+}
+
+.notice p {
+    color: #727a90;
+    font-size: 14px;
+}
+
+/* CTA */
+.cta {
+    padding: 0 0 75px;
+}
+
+.cta-box {
+    background: linear-gradient(120deg, #111a38, #32256d);
+    color: white;
+    padding: 45px;
+    border-radius: 23px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.cta-box p {
+    color: #cbd3ec;
+    margin-top: 8px;
+}
+
+/* FOOTER */
+footer {
+    background: #0d142d;
+    color: white;
+    padding: 35px 0;
+    text-align: center;
+}
+
+footer p {
+    color: #aeb8d1;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-card {
+        max-width: 550px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .jobs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        padding: 15px 0;
+        flex-wrap: wrap;
+    }
+
+    nav ul {
+        order: 3;
+        width: 100%;
+        gap: 15px;
+        flex-wrap: wrap;
+        font-size: 13px;
+    }
+
+    .nav-btn {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 55px 0;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .jobs,
+    .features,
+    .stats,
+    .notice-board {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+        padding: 28px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    section.content-section {
+        padding: 55px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav class="container">
+        <div class="logo">✦ Campus<span>Connect</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#jobs">Opportunities</a></li>
+            <li><a href="#services">Career Hub</a></li>
+            <li><a href="#notices">Updates</a></li>
+        </ul>
+
+        <a href="#jobs" class="nav-btn">Explore Jobs ↗</a>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="container hero-grid">
+
+        <div>
+            <span class="tagline">✦ YOUR CAREER JOURNEY STARTS HERE</span>
+
+            <h1>Your Future.<br>
+                Your Skills.<br>
+                <span>Your Success.</span>
+            </h1>
+
+            <p>
+                Discover opportunities, prepare for interviews,
+                build your skills, and take the next step toward
+                your dream career with CampusConnect.
+            </p>
+
+            <a href="#jobs" class="btn btn-white">Explore Opportunities ↗</a>
+            <a href="#services" class="btn btn-outline">Career Hub →</a>
+        </div>
+
+        <div class="hero-card">
+            <div class="card-heading">
+                <div>
+                    <h3>Career Dashboard</h3>
+                    <p style="color:#777f94;font-size:13px">
+                        Your future starts today
+                    </p>
+                </div>
+                <span class="status">● READY TO GROW</span>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dash-box">
+                    <small>Opportunities</small>
+                    <h2>12+</h2>
+                </div>
+
+                <div class="dash-box">
+                    <small>Career Resources</small>
+                    <h2>08</h2>
+                </div>
+
+                <div class="dash-box">
+                    <small>Profile Progress</small>
+                    <h2>75%</h2>
+                </div>
+
+                <div class="dash-box">
+                    <small>Career Goals</small>
+                    <h2>04</h2>
+                </div>
+            </div>
+
+            <div style="margin-top:22px">
+                <strong>Profile readiness</strong>
+                <div class="progress"><div></div></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="content-section" id="jobs">
+    <div class="container">
+
+        <div class="section-title">
+            <small>Discover opportunities</small>
+            <h2>Featured Internships & Jobs</h2>
+            <p>
+                Explore sample opportunities and find a career
+                path that matches your interests and skills.
+            </p>
+        </div>
+
+        <div class="jobs">
+
+            <article class="job-card">
+                <div class="company-icon">T</div>
+                <h3>Frontend Developer</h3>
+                <p class="company">Technology & Web Development</p>
+
+                <div class="tags">
+                    <span>Internship</span>
+                    <span>HTML/CSS</span>
+                    <span>Fresher</span>
+                </div>
+
+                <div class="job-info">
+                    Work Mode
+                    <strong>Hybrid / Remote</strong>
+                </div>
+
+                <a href="#contact" class="btn">View Details ↗</a>
+            </article>
+
+            <article class="job-card">
+                <div class="company-icon" style="background:#e4f7ff;color:#087ba9">D</div>
+                <h3>Data Analyst Trainee</h3>
+                <p class="company">Data & Business Analytics</p>
+
+                <div class="tags">
+                    <span>Trainee</span>
+                    <span>Excel</span>
+                    <span>Fresher</span>
+                </div>
+
+                <div class="job-info">
+                    Work Mode
+                    <strong>On-site</strong>
+                </div>
+
+                <a href="#contact" class="btn">View Details ↗</a>
+            </article>
+
+            <article class="job-card">
+                <div class="company-icon" style="background:#fff0df;color:#bd6a16">U</div>
+                <h3>UI/UX Design Intern</h3>
+                <p class="company">Creative & Product Design</p>
+
+                <div class="tags">
+                    <span>Internship</span>
+                    <span>Figma</span>
+                    <span>Portfolio</span>
+                </div>
+
+                <div class="job-info">
+                    Work Mode
+                    <strong>Hybrid</strong>
+                </div>
+
+                <a href="#contact" class="btn">View Details ↗</a>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="content-section features-section" id="services">
+    <div class="container">
+
+        <div class="section-title">
+            <small>Everything in one place</small>
+            <h2>Your Personal Career Hub</h2>
+            <p>
+                Learn, prepare, and become confident about
+                your next placement opportunity.
+            </p>
+        </div>
+
+        <div class="features">
+
+            <article class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Resume Builder</h3>
+                <p>Create a professional resume highlighting
+                your skills, projects, and achievements.</p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Aptitude Practice</h3>
+                <p>Prepare for placement tests with logical
+                reasoning and quantitative practice.</p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">🎤</div>
+                <h3>Interview Preparation</h3>
+                <p>Practice common interview questions and
+                improve your communication skills.</p>
+            </article>
+
+            <article class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Skill Development</h3>
+                <p>Discover technical skills and project ideas
+                to strengthen your portfolio.</p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="statistics">
+    <div class="container stats">
+        <div class="stat">
+            <h2>01</h2>
+            <p>Central Career Hub</p>
+        </div>
+
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Learn at Your Pace</p>
+        </div>
+
+        <div class="stat">
+            <h2>04</h2>
+            <p>Career Resource Areas</p>
+        </div>
+
+        <div class="stat">
+            <h2>∞</h2>
+            <p>Room to Grow</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-section" id="notices">
+    <div class="container">
+
+        <div class="section-title">
+            <small>Stay informed</small>
+            <h2>Placement Desk</h2>
+            <p>Keep your placement preparation organised
+            with important tasks and updates.</p>
+        </div>
+
+        <div class="notice-board">
+
+            <div class="notice-panel">
+                <h3>📢 Student Notice Board</h3>
+
+                <div class="notice">
+                    <div class="notice-date">01</div>
+                    <div>
+                        <h4>Complete Your Student Profile</h4>
+                        <p>Add your branch, academic details,
+                        skills, and project information.</p>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    <div class="notice-date">02</div>
+                    <div>
+                        <h4>Prepare Your Resume</h4>
+                        <p>Include your projects, certifications,
+                        technical skills, and achievements.</p>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    <div class="notice-date">03</div>
+                    <div>
+                        <h4>Check Campus Placement Updates</h4>
+                        <p>Confirm actual drive dates and eligibility
+                        with your placement officer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notice-panel">
+                <h3>🚀 Placement Readiness</h3>
+                <p style="color:#6c748b">
+                    Follow this checklist to prepare for your
+                    future opportunities.
+                </p>
+
+                <div class="tags" style="margin-top:22px">
+                    <span>✓ Update your resume</span>
+                    <span>✓ Practise aptitude</span>
+                    <span>✓ Prepare self-introduction</span>
+                    <span>✓ Build a project</span>
+                    <span>✓ Improve communication</span>
+                </div>
+
+                <a href="#services" class="btn">Explore Career Resources →</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="cta" id="contact">
+    <div class="container">
+        <div class="cta-box">
+            <div>
+                <h2>Your Dream Career Starts With One Step.</h2>
+                <p>Learn today. Prepare for tomorrow. Grow with confidence.</p>
+            </div>
+
+            <a href="#jobs" class="btn btn-white">Explore Opportunities ↗</a>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <div class="logo" style="color:#a99aff">
+            ✦ Campus<span style="color:white">Connect</span>
+        </div>
+
+        <p>Student Placement Portal | A Student Project Concept</p>
+        <p>© 2026 CampusConnect. Built for learning and opportunity.</p>
+    </div>
+</footer>
+
+</body>
+</html>
